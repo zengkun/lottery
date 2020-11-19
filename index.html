@@ -149,232 +149,250 @@
         </div>
     </div>
     <!--无机会弹窗结束-->
-    <script>
-    var giftList = {
-        0: {
-            name: '谢谢惠顾',
-            tip: '',
-            img: 'https://weixiao.qq.com/public/applottery/img/xiexie.png',
-        },
-        1: {
-            name: '智能手机',
-            tip: '恭喜你抽中',
-            img: 'https://wxpublic-1251448646.file.myqcloud.com/mobile/20191123/1574516914SYSKYH.png',
-        },
-        2: {
-            name: '谢谢惠顾',
-            tip: '',
-            img: 'https://weixiao.qq.com/public/applottery/img/xiexie.png',
-        },
-        3: {
-            name: '谢谢惠顾',
-            tip: '',
-            img: 'https://weixiao.qq.com/public/applottery/img/xiexie.png',
-        },
-        4: {
-            name: '数据线',
-            tip: '',
-            img: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1887573477,2372872127&fm=26&gp=0.jpg',
-        },
-        5: {
-            name: '谢谢惠顾',
-            tip: '',
-            img: 'https://weixiao.qq.com/public/applottery/img/xiexie.png',
-        },
-        6: {
-            name: '智能手机',
-            tip: '恭喜你抽中',
-            img: 'https://wxpublic-1251448646.file.myqcloud.com/mobile/20191123/1574516914SYSKYH.png',
-        },
-        7: {
-            name: '数据线',
-            tip: '',
-            img: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1887573477,2372872127&fm=26&gp=0.jpg',
-        },
-    }
-    // 1:智能手机 2:钢化膜 3:谢谢惠顾
-    var luckList = {
-        '2ad8f5fa5123d943cd21e0977fd92535': 1,
-        '73691dde7b6e79cf9bcd000a21f71bfe': 2,
-        '8ec32aa42bb126a294775680a90a7090': 3,
-    }
-    var luck = {
-        count: 1, // 几次抽奖机会
-        index: -1, // 当前转动到哪个位置，起点位置
-        position: 0, // 总共有多少个位置
-        timer: 0, // setTimeout的ID，用clearTimeout清除
-        speed: 20, // 初始转动速度
-        times: 0, // 转动次数
-        cycle: 50, // 转动基本次数：即至少需要转动多少次再进入抽奖环节
-        prize: -1, // 中奖位置
-        init: function(id) {
-            if ($("#" + id).find(".luck-unit").length > 0) {
-                $luck = $("#" + id);
-                $units = $luck.find(".luck-unit");
-                this.obj = $luck;
-                this.position = $units.length;
-                $luck.find(".luck-unit-" + this.index).addClass("active");
-                $(".num").html(this.count)
-            };
-        },
+    <div class="loading-error-page dis_no">
+        <h3 class="error-title">请在微信浏览器中打开</h3>
+    </div>
+</body>
+<script>
+var giftList = {
+    0: {
+        name: '谢谢惠顾',
+        tip: '',
+        img: 'https://weixiao.qq.com/public/applottery/img/xiexie.png',
+    },
+    1: {
+        name: '智能手机',
+        tip: '恭喜你抽中',
+        img: 'https://wxpublic-1251448646.file.myqcloud.com/mobile/20191123/1574516914SYSKYH.png',
+    },
+    2: {
+        name: '谢谢惠顾',
+        tip: '',
+        img: 'https://weixiao.qq.com/public/applottery/img/xiexie.png',
+    },
+    3: {
+        name: '谢谢惠顾',
+        tip: '',
+        img: 'https://weixiao.qq.com/public/applottery/img/xiexie.png',
+    },
+    4: {
+        name: '数据线',
+        tip: '',
+        img: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1887573477,2372872127&fm=26&gp=0.jpg',
+    },
+    5: {
+        name: '谢谢惠顾',
+        tip: '',
+        img: 'https://weixiao.qq.com/public/applottery/img/xiexie.png',
+    },
+    6: {
+        name: '智能手机',
+        tip: '恭喜你抽中',
+        img: 'https://wxpublic-1251448646.file.myqcloud.com/mobile/20191123/1574516914SYSKYH.png',
+    },
+    7: {
+        name: '数据线',
+        tip: '',
+        img: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1887573477,2372872127&fm=26&gp=0.jpg',
+    },
+}
+// 1:智能手机 2:钢化膜 3:谢谢惠顾
+var luckList = {
+    '2ad8f5fa5123d943cd21e0977fd92535': 1,
+    '73691dde7b6e79cf9bcd000a21f71bfe': 2,
+    '8ec32aa42bb126a294775680a90a7090': 3,
+}
+var luck = {
+    count: 1, // 几次抽奖机会
+    index: -1, // 当前转动到哪个位置，起点位置
+    position: 0, // 总共有多少个位置
+    timer: 0, // setTimeout的ID，用clearTimeout清除
+    speed: 20, // 初始转动速度
+    times: 0, // 转动次数
+    cycle: 50, // 转动基本次数：即至少需要转动多少次再进入抽奖环节
+    prize: -1, // 中奖位置
+    init: function(id) {
+        if ($("#" + id).find(".luck-unit").length > 0) {
+            $luck = $("#" + id);
+            $units = $luck.find(".luck-unit");
+            this.obj = $luck;
+            this.position = $units.length;
+            $luck.find(".luck-unit-" + this.index).addClass("active");
+            $(".num").html(this.count)
+        };
+    },
 
-        roll: function() {
-            var index = this.index;
-            var position = this.position;
-            var luck = this.obj;
-            $(luck).find(".luck-unit-" + index).removeClass("active");
-            index += 1;
-            if (index > position - 1) {
-                index = 0;
-            };
-            $(luck).find(".luck-unit-" + index).addClass("active");
-            this.index = index;
-            return false;
-        },
-        stop: function(index) {
-            this.prize = index;
-            return false;
-        }
-    };
-
-    function roll() {
-        luck.times += 1;
-        luck.roll();
-        if (luck.times > luck.cycle + luck.position - luck.prize && luck.prize == luck.index) {
-            clearTimeout(luck.timer);
-            // luck.prize = -1;
-            // luck.times = 0;
-        } else {
-            if (luck.times < luck.cycle) {
-                luck.speed -= 10;
-            } else if (luck.times == luck.cycle) {
-                // 最终中奖位置
-                var _prize = getQueryVariable("aid")
-                luck.prize = luckList[_prize] || 4;
-
-                $(".gift-img-id").prop("src", giftList[luck.prize].img)
-                $(".gift-name-id").html(giftList[luck.prize].tip + giftList[luck.prize].name)
-                $(".gift_time").html(new Date().format("yyyy-MM-dd hh:mm:ss"))
-            } else {
-                if (luck.times > luck.cycle + luck.position - luck.prize && luck.prize == luck.index + 1) {
-                    luck.speed += 110;
-                } else {
-                    luck.speed += 20;
-                }
-            }
-            if (luck.speed < 40) {
-                luck.speed = 40;
-            };
-
-            luck.timer = setTimeout(roll, luck.speed);
-        }
+    roll: function() {
+        var index = this.index;
+        var position = this.position;
+        var luck = this.obj;
+        $(luck).find(".luck-unit-" + index).removeClass("active");
+        index += 1;
+        if (index > position - 1) {
+            index = 0;
+        };
+        $(luck).find(".luck-unit-" + index).addClass("active");
+        this.index = index;
+        return false;
+    },
+    stop: function(index) {
+        this.prize = index;
         return false;
     }
+};
 
-    var click = true;
-    window.onload = function() {
-        luck.init('luck');
-        var giftPrize = localStorage.getItem("giftPrize")
-        console.log('giftPrize: ', giftPrize);
-        if (giftPrize) {
-            luck.count = 0
-            $(".num").html(luck.count)
-            $(".gift-img-id").prop("src", giftList[giftPrize].img)
-            $(".gift-name-id").html(giftList[giftPrize].tip + giftList[giftPrize].name)
-            $(".gift_time").html(localStorage.getItem("giftTime"))
-            $("#my_gift").show()
-        }
+function roll() {
+    luck.times += 1;
+    luck.roll();
+    if (luck.times > luck.cycle + luck.position - luck.prize && luck.prize == luck.index) {
+        clearTimeout(luck.timer);
+        // luck.prize = -1;
+        // luck.times = 0;
+    } else {
+        if (luck.times < luck.cycle) {
+            luck.speed -= 10;
+        } else if (luck.times == luck.cycle) {
+            // 最终中奖位置
+            var _prize = getQueryVariable("aid")
+            luck.prize = luckList[_prize] || 2;
 
-        $("#btn").click(function() {
-            $luck.find(".luck-unit").removeClass("active");
-            luck.index = -1;
-            luck.speed = 100;
-
-            if (luck.count <= 0) {
-                $(".cover").removeClass("dis_no");
-                $(".count_box").removeClass("dis_no");
-                $("body,html").css({
-                    "height": "100%",
-                    "overflow": "hidden"
-                })
-                return
+            $(".gift-img-id").prop("src", giftList[luck.prize].img)
+            $(".gift-name-id").html(giftList[luck.prize].tip + giftList[luck.prize].name)
+            $(".gift_time").html(new Date().format("yyyy-MM-dd hh:mm:ss"))
+        } else {
+            if (luck.times > luck.cycle + luck.position - luck.prize && luck.prize == luck.index + 1) {
+                luck.speed += 110;
+            } else {
+                luck.speed += 20;
             }
-
-            if (!click) return
-
-            roll();
-
-            click = false;
-            setTimeout(function() {
-                $(".cover").removeClass("dis_no");
-                $(".result_box").removeClass("dis_no");
-                $("body,html").css({
-                    "height": "100%",
-                    "overflow": "hidden"
-                })
-                click = true;
-
-                if (luck.count > 0) luck.count--
-                $(".num").html(luck.count)
-
-                $("#my_gift").show()
-
-                localStorage.setItem("giftPrize", luck.prize);
-                localStorage.setItem("giftTime", $(".gift_time").html());
-            }, 4000);
-        });
-    };
-
-    // ios弹窗位置调整
-    $("input").bind('focus', function() {
-        var top = document.body.scrollTop;
-        $(window).scrollTop(top);
-    })
-    $("input").bind('blur', function() {
-        var top = document.body.scrollTop;
-        $(window).scrollTop(top);
-    })
-    // 关闭弹窗
-    $(".btn_default").on("click", function() {
-        $(".cover").addClass("dis_no");
-        $(".result_box,.count_box").addClass("dis_no");
-        $("body,html").css({
-            "height": "100%",
-            "overflow": "auto"
-        })
-    })
-
-    function getQueryVariable(variable) {
-        var query = window.location.search.substring(1);
-        var vars = query.split("&");
-        for (var i = 0; i < vars.length; i++) {
-            var pair = vars[i].split("=");
-            if (pair[0] == variable) { return pair[1]; }
         }
-        return (false);
-    }
-
-    Date.prototype.format = function(fmt) {
-        var o = {
-            "M+": this.getMonth() + 1, //月份
-            "d+": this.getDate(), //日
-            "h+": this.getHours(), //小时
-            "m+": this.getMinutes(), //分
-            "s+": this.getSeconds(), //秒
-            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
-            "S": this.getMilliseconds() //毫秒
+        if (luck.speed < 40) {
+            luck.speed = 40;
         };
-        if (/(y+)/.test(fmt)) {
-            fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-        }
-        for (var k in o) {
-            if (new RegExp("(" + k + ")").test(fmt)) {
-                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-            }
-        }
-        return fmt;
+
+        luck.timer = setTimeout(roll, luck.speed);
     }
-    </script>
-</body>
+    return false;
+}
+
+var click = true;
+window.onload = function() {
+    if (!isWeiXin()) {
+        $(".loading-error-page").show()
+        $(".all").hide()
+        return;
+    }
+
+    luck.init('luck');
+    var giftPrize = localStorage.getItem("giftPrize")
+    console.log('giftPrize: ', giftPrize);
+    if (giftPrize) {
+        luck.count = 0
+        $(".num").html(luck.count)
+        $(".gift-img-id").prop("src", giftList[giftPrize].img)
+        $(".gift-name-id").html(giftList[giftPrize].tip + giftList[giftPrize].name)
+        $(".gift_time").html(localStorage.getItem("giftTime"))
+        $("#my_gift").show()
+    }
+
+    $("#btn").click(function() {
+        $luck.find(".luck-unit").removeClass("active");
+        luck.index = -1;
+        luck.speed = 100;
+
+        if (luck.count <= 0) {
+            $(".cover").removeClass("dis_no");
+            $(".count_box").removeClass("dis_no");
+            $("body,html").css({
+                "height": "100%",
+                "overflow": "hidden"
+            })
+            return
+        }
+
+        if (!click) return
+
+        roll();
+
+        click = false;
+        setTimeout(function() {
+            $(".cover").removeClass("dis_no");
+            $(".result_box").removeClass("dis_no");
+            $("body,html").css({
+                "height": "100%",
+                "overflow": "hidden"
+            })
+            click = true;
+
+            if (luck.count > 0) luck.count--
+            $(".num").html(luck.count)
+
+            $("#my_gift").show()
+
+            localStorage.setItem("giftPrize", luck.prize);
+            localStorage.setItem("giftTime", $(".gift_time").html());
+        }, 4000);
+    });
+};
+
+// ios弹窗位置调整
+$("input").bind('focus', function() {
+    var top = document.body.scrollTop;
+    $(window).scrollTop(top);
+})
+$("input").bind('blur', function() {
+    var top = document.body.scrollTop;
+    $(window).scrollTop(top);
+})
+// 关闭弹窗
+$(".btn_default").on("click", function() {
+    $(".cover").addClass("dis_no");
+    $(".result_box,.count_box").addClass("dis_no");
+    $("body,html").css({
+        "height": "100%",
+        "overflow": "auto"
+    })
+})
+
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) { return pair[1]; }
+    }
+    return (false);
+}
+
+function isWeiXin() {
+    var ua = window.navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i) == "micromessenger") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+Date.prototype.format = function(fmt) {
+    var o = {
+        "M+": this.getMonth() + 1, //月份
+        "d+": this.getDate(), //日
+        "h+": this.getHours(), //小时
+        "m+": this.getMinutes(), //分
+        "s+": this.getSeconds(), //秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+        "S": this.getMilliseconds() //毫秒
+    };
+    if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
+    for (var k in o) {
+        if (new RegExp("(" + k + ")").test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        }
+    }
+    return fmt;
+}
+</script>
 
 </html>
