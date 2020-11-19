@@ -149,7 +149,7 @@
         </div>
     </div>
     <!--无机会弹窗结束-->
-    <div class="loading-error-page dis_no">
+    <div class="loading-error-page" style="display: none;">
         <h3 class="error-title">请在微信浏览器中打开</h3>
     </div>
 </body>
@@ -167,7 +167,7 @@ var giftList = {
     },
     2: {
         name: '谢谢惠顾',
-        tip: '',
+        tip: '恭喜你抽中',
         img: 'https://weixiao.qq.com/public/applottery/img/xiexie.png',
     },
     3: {
@@ -177,7 +177,7 @@ var giftList = {
     },
     4: {
         name: '数据线',
-        tip: '',
+        tip: '恭喜你抽中',
         img: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1887573477,2372872127&fm=26&gp=0.jpg',
     },
     5: {
@@ -187,7 +187,7 @@ var giftList = {
     },
     6: {
         name: '智能手机',
-        tip: '恭喜你抽中',
+        tip: '',
         img: 'https://wxpublic-1251448646.file.myqcloud.com/mobile/20191123/1574516914SYSKYH.png',
     },
     7: {
@@ -196,11 +196,11 @@ var giftList = {
         img: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1887573477,2372872127&fm=26&gp=0.jpg',
     },
 }
-// 1:智能手机 2:钢化膜 3:谢谢惠顾
+// 1:智能手机 4:数据线 2:谢谢惠顾
 var luckList = {
     '2ad8f5fa5123d943cd21e0977fd92535': 1,
-    '73691dde7b6e79cf9bcd000a21f71bfe': 2,
-    '8ec32aa42bb126a294775680a90a7090': 3,
+    '73691dde7b6e79cf9bcd000a21f71bfe': 4,
+    '8ec32aa42bb126a294775680a90a7090': 2,
 }
 var luck = {
     count: 1, // 几次抽奖机会
@@ -277,7 +277,7 @@ function roll() {
 
 var click = true;
 window.onload = function() {
-    if (!isWeiXin()) {
+    if (!isWeiXin() && window.location.host.indexOf("bmobile-shop.com") !== -1) {
         $(".loading-error-page").show()
         $(".all").hide()
         return;
