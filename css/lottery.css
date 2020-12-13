@@ -70,9 +70,9 @@
 }
 
 .shanDeng table td {
-    width: 33.33%;
+    width: 25%;
     height: 0.6rem;
-    padding: 0.12rem 0;
+    padding: 0.1rem 0;
     box-sizing: border-box;
     font-size: 0.16rem;
     text-align: center;
@@ -81,9 +81,9 @@
 }
 
 .shanDeng img {
-    width: 0.95rem;
-    height: 0.95rem;
-    margin: 0.08rem auto;
+    width: 0.68rem;
+    height: 0.68rem;
+    margin: 0.05rem auto;
 }
 
 #btn.cjBtn {
@@ -202,7 +202,7 @@
 }
 
 .winner_list table td {
-    width: 33.33%;
+    width: 25%;
     box-sizing: border-box;
     text-align: center;
     color: #bbb;
